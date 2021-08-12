@@ -1,0 +1,5 @@
+Flask~=1.1.2
+psycopg2~=2.8.6
+twilio~=6.57.0
+Flask-Login==0.4.1
+gunicorn==20.1.0

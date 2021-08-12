@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<!-- Created By CodingNepal - www.codingnepalweb.com -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- <title>Dropdown Menu with Search Box | CodingNepal</title> -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+  <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+  <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+    @import url('https://fonts.googleapsis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+:root {
+    --color-main:#1a202e;
+}
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: 'Poppins', sans-serif;
+}
+.wrapper{
+  background: #ccccff;
+  position:fixed;
+  width: 100%;
+
+}
+.wrapper nav{
+  position:relative;
+
+  display: flex;
+  max-width: calc(100% - 200px);
+  margin: 0 auto;
+  height: 70px;
+  align-items: center;
+  justify-content: space-between;
+}
+nav .content{
+  position: relative;
+  left:280px;
+  display: flex;
+  align-items: center;
+}
+nav .content .links{
+  margin-left: 80px;
+  display: flex;
+}
+nav form{
+    display:flex;
+    height: 40px;
+    border-radius: 2px;
+    padding: 2px;
+    background: #fff;
+    min-width :18%!important;
+    border:1px solid rgba(155,155,155,0.2);
+
+}
+nav form .search-data{
+    height: 100%;
+    width: 100%;
+    padding: 0 10px;
+    color:black;
+    font-weight: 500;
+    background:none;
+    border:none;
+    font-weight:500;
+    font-size:17px;
+
+
+
+}
+nav form button{
+    padding:0 15px;
+    background: #ff3d00;
+    border:none;
+    cursor:pointer;
+    font-size: 17px;
+    color:#fff;
+    border-radius: 2px;
+}
+.content .logo a{
+  color: #006699;
+  font-size: 30px;
+  font-weight: 600;
+}
+.content .links li{
+  list-style: none;
+  line-height: 70px;
+}
+.content .links li a,
+.content .links li label{
+  color: #006699;
+  font-size: 18px;
+  font-weight: 500;
+  padding: 9px 17px;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+.content .links li label{
+  display: none;
+}
+.content .links li a:hover,
+.content .links li label:hover{
+  background: #0099cc;
+}
+.wrapper .search-icon,
+.wrapper .menu-icon{
+  color: #fff;
+  font-size: 18px;
+  cursor: pointer;
+  line-height: 70px;
+  width: 70px;
+  text-align: center;
+}
+.wrapper .menu-icon{
+  display: none;
+}
+.wrapper #show-search:checked ~ .search-icon i::before{
+  content: "\f00d";
+}
+.wrapper .search-box{
+  position: absolute;
+  height: 100%;
+  max-width: calc(100% - 50px);
+  width: 100%;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+.wrapper #show-search:checked ~ .search-box{
+  opacity: 1;
+  pointer-events: auto;
+}
+.search-box input{
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+  font-size: 17px;
+  color: #fff;
+  background: #171c24;
+  padding: 0 100px 0 15px;
+}
+.search-box input::placeholder{
+  color: #f2f2f2;
+}
+.search-box .go-icon{
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  line-height: 60px;
+  width: 70px;
+  background: #006699;
+  border: none;
+  outline: none;
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+}
+.wrapper input[type="checkbox"]{
+  display: none;
+}
+
+/* Dropdown Menu code start */
+.content .links ul{
+  position: absolute;
+  background: #ccccff;
+  top: 80px;
+  z-index: -1;
+  opacity: 0;
+  visibility: hidden;
+}
+.content .links li:hover > ul{
+  top: 70px;
+  opacity: 1;
+  visibility: visible;
+  transition: all 0.3s ease;
+}
+.content .links ul li a{
+  display: block;
+  width: 100%;
+  line-height: 30px;
+  border-radius: 0px!important;
+}
+.content .links ul ul{
+  position: absolute;
+  top: 0;
+  right: calc(-100% + 8px);
+}
+.content .links ul li{
+  position: relative;
+}
+.content .links ul li:hover ul{
+  top: 0;
+}
+
+/* Responsive code start */
+@media screen and (max-width: 1250px){
+  .wrapper nav{
+    max-width: 100%;
+    padding: 0 20px;
+  }
+  nav .content .links{
+    margin-left: 30px;
+  }
+  .content .links li a{
+    padding: 8px 13px;
+  }
+  .wrapper .search-box{
+    max-width: calc(100% - 100px);
+  }
+  .wrapper .search-box input{
+    padding: 0 100px 0 15px;
+  }
+}
+
+@media screen and (max-width: 900px){
+  .wrapper .menu-icon{
+    display: block;
+  }
+  .wrapper #show-menu:checked ~ .menu-icon i::before{
+    content: "\f00d";
+  }
+  nav .content .links{
+    display: block;
+    position: fixed;
+    background: #14181f;
+    height: 100%;
+    width: 100%;
+    top: 70px;
+    left: -100%;
+    margin-left: 0;
+    max-width: 350px;
+    overflow-y: auto;
+    padding-bottom: 100px;
+    transition: all 0.3s ease;
+  }
+  nav #show-menu:checked ~ .content .links{
+    left: 0%;
+  }
+  .content .links li{
+    margin: 15px 20px;
+  }
+  .content .links li a,
+  .content .links li label{
+    line-height: 40px;
+    font-size: 20px;
+    display: block;
+    padding: 8px 18px;
+    cursor: pointer;
+  }
+  .content .links li a.desktop-link{
+    display: none;
+  }
+
+  /* dropdown responsive code start */
+  .content .links ul,
+  .content .links ul ul{
+    position: static;
+    opacity: 1;
+    visibility: visible;
+    background: none;
+    max-height: 0px;
+    overflow: hidden;
+  }
+  .content .links #show-features:checked ~ ul,
+  .content .links #show-services:checked ~ ul,
+  .content .links #show-items:checked ~ ul{
+    max-height: 100vh;
+  }
+  .content .links ul li{
+    margin: 7px 20px;
+  }
+  .content .links ul li a{
+    font-size: 18px;
+    line-height: 30px;
+    border-radius: 5px!important;
+  }
+}
+
+@media screen and (max-width: 400px){
+  .wrapper nav{
+    padding: 0 10px;
+  }
+  .content .logo a{
+    font-size: 27px;
+  }
+  .wrapper .search-box{
+    max-width: calc(100% - 70px);
+  }
+  .wrapper .search-box .go-icon{
+    width: 30px;
+    right: 0;
+  }
+  .wrapper .search-box input{
+    padding-right: 30px;
+  }
+}
+
+.dummy-text{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  z-index: -1;
+  padding: 0 20px;
+  text-align: center;
+  transform: translate(-50%, -50%);
+}
+.dummy-text h2{
+  font-size: 45px;
+  margin: 5px 0;
+}
+
+
+#sidebar-toggle{
+    display:none;
+
+}
+#sidebar-toggle:checked ~ .sidebar{
+    left: -100%;
+
+}
+#sidebar-toggle:checked ~ header{
+
+    left: -100%;
+}
+#sidebar-toggle:checked ~ .main-content{
+
+    margin-left: 0%;
+}
+
+.sidebar {
+    width: 250px;;
+    position:fixed;
+    left:0;
+    top:0;
+    height:100%;
+    padding: 1rem 1.5rem;
+    background:linear-gradient(to bottom, #006699 12%, #009999 100%);
+    color:#fff;
+    z-index:20;
+    transition: left 300ms;
+}
+
+.sidebar-brand{
+    height:70px;
+}
+
+.brand-flex {
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+}
+.brand-flex img{
+    width:30px;
+    height:30px;
+    border-radius:50%;
+}
+
+.brand-icons span{
+    font-size:1.5rem;
+    margin-left:.5rem;
+
+}
+.sidebar-user{
+    margin:1rem 0rem 1rem 0rem;
+    text-align:center;
+}
+
+.sidebar-user img {
+    width:110px;
+    height:110px;
+    border-radius:50%;
+    border-left:2px solid #6699ff;
+    border-right:2px solid #6699ff;
+    border-bottom:2px solid #6699ff;
+    border-top:2px solid #6699ff;
+
+}
+.sidebar-user h3{
+    font-size:1rem;
+    color:#ccccff;
+}
+.sidebar-user span{
+    font-size:.8rem;
+    color:#ccccff;
+}
+.sidebar-menu{
+    margin-top:3rem;
+}
+.menu-head {
+    text-transform:uppercase;
+    color: #6699ff;
+    font-size:.9rem;
+    font-weight:500;
+    margin-bottom:.5rem;
+}
+.sidebar ul{
+    margin-bottom:1.5rem;
+}
+.sidebar-menu li{
+
+    margin-bottom: .8rem;
+    display:flex;
+    align-items: center;
+}
+.sidebar-menu li a {
+    color:#efefef;
+    font-size:.9rem;
+
+}
+.sidebar-menu li a span{
+
+    font-size:1.5rem;
+}
+
+header{
+    height:70px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:1rem 1.5rem;
+    transition: left 300ms;
+
+}
+.menu-toggle label{
+    height:60px;
+    width:60px;
+    display:grid;
+    place-items:center;
+    font-size:1.5rem;
+    border-radius:50%;
+    position: relative;
+    color: white;
+
+}
+.header-icons span{
+    display:inline-block;
+    margin-left:.7rem;
+    font-size:1.4rem;
+}
+.menu-toggle label{
+    background:transparent;
+}
+.main-content {
+    margin-left:280px;
+    transition: margin-left 300ms;
+
+
+}
+</style>
+<body>
+
+  <div class="wrapper">
+    <nav>
+      <input type="checkbox" id="show-search">
+      <input type="checkbox" id="show-menu">
+      <label for="show-menu" class="menu-icon"><i class="fas fa-bars"></i></label>
+      <div class="content">
+      <div class="logo"><a href="#">Dashboard</a></div>
+        <ul class="links">
+          <li><a href="#">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li>
+            <a href="#" class="desktop-link">Features</a>
+            <input type="checkbox" id="show-features">
+            <label for="show-features">Features</label>
+            <ul>
+              <div class="submnu1">
+
+              <li ><a href="/creator_disp_job/AorR/{{ current_user.email }}"> Job Applications</a></li>
+              <li><a href="/creator_disp_job/Approve/{{ current_user.email }}">Accepted list</a></li>
+              <li><a href="/creator_disp_job/Finalise/{{ current_user.email }}">Finalised list</a></li>
+              <li><a href="/creator_disp_job/Completed/{{ current_user.email }}">Completed jobs</a></li>
+
+              </div>
+            </ul>
+          </li>
+          <li>
+            <a href="#" class="desktop-link">Services</a>
+            <input type="checkbox" id="show-services">
+            <label for="show-services">Services</label>
+            <ul>
+              <li><a href="/create_job/{{ current_user.email }}">Create new job</a></li>
+              <li><a href="/edit_create_job/{{ current_user.email }}">Edit job</a></li>
+              <li><a href="/update_project/{{ current_user.email }}">Update status</a></li>
+              <li><a href="#">Drop down</a></li>
+              <li>
+                <a href="#" class="desktop-link">More Items</a>
+                <input type="checkbox" id="show-items">
+                <label for="show-items">More Items</label>
+                <ul>
+                  <li><a href="#">Sub Menu 1</a></li>
+                  <li><a href="#">Sub Menu 2</a></li>
+                  <li><a href="#">Sub Menu 3</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><a href="#">Feedback</a></li>
+        </ul>
+        <form action="#">
+
+            <input type="search" class="search-data" placeholder="Search" required>
+            <button type="submit" class="fas fa-search"></button>
+        </form>
+      </div>
+
+    </nav>
+  </div>
+
+
+
+  <input type="checkbox" name="" id="sidebar-toggle">
+  <div class="sidebar">
+      <div class="sidebar-brand">
+          <div class="brand-flex">
+              <img src="{{url_for('static',filename='download.jpg')}}" width="30px"  alt="">
+              <div class="brand-icons">
+                  <span class="las la-bell"></span>
+                  <span class="las la-user-circle"></span>
+              </div>
+          </div>
+      </div>
+      <div class="sidebar-main">
+         <a href="/creator_profile_edit">  <div class="sidebar-user">
+              <img src="{{url_for('static',filename='tree-736885__480.jpg')}}"  alt="">
+              <div>
+                  <h3>{{ current_user.username }}</h3>
+                  <span>{{ current_user.email }}</span>
+              </div>
+          </div> </a>
+
+          <div class="sidebar-menu">
+              <div class="menu-head">
+              <span>Dashboard</span>
+          </div>
+          <ul>
+              <li>
+                  <a href="">
+                      <span class="las la-plus-square"></span>
+                      Add Resume
+                  </a>
+              </li>
+              <li>
+                  <a href="/second">
+                      <span  class="las la-briefcase"></span>
+                      Search Job
+                  </a>
+              </li>
+
+          </ul>
+
+
+          </ul>
+      </div>
+  </div>
+</div>
+<div class="main-content">
+  <header>
+      <div class="menu-toggle">
+          <label for="sidebar-toggle">
+              <span class=" las la-bars"></span>
+          </label>
+      </div>
+
+
+  </header>
+
+
+</div>
+<div id="import other">
+    {% block content%}
+    {% endblock %}
+</div>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<style>
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  padding: 16px;
+  background-color: #f1f1f1;
+  margin: 20px 25px;
+width:80%;margin-left:10%;
+}
+
+.row {
+    height: 25px;
+    vertical-align: bottom;
+}
+.div0{margin-left:4%;}
+
+</style>
+</head>
+<body>
+  <div class="div0"></br>
+	<a href="my_current_job">	<button style="height:40px;width:19%;background-color:green;color:white" type="button">MY CURRENT JOB</button>	</a>
+	<a href="applied_jobs">		<button style="height:40px;width:19%;background-color:blue;color:white" type="button">APPLIED JOBS</button>	</a>
+	<a href="approve_jobs">		<button style="height:40px;width:19%;background-color:green;color:white" type="button">APPROVE JOBS</button>	</a>
+	<a href="rejected_jobs">	<button style="height:40px;width:19%;background-color:green;color:white" type="button">REJECTED JOBS</button>	</a>
+	<a href="completed_job"> <button style="height:40px;width:19%;background-color:green;color:white" type="button">COMPLETED JOB</button>	</a>
+
+ </div>
+
+
+  <h1>Waiting for Approval from Job creator</h1>
+  {% for row in posted_jobs3 %}
+  <div class="card">
+    <table>
+    	<tr>
+        	<td>
+            	<img src="https://www.iconbunny.com/icons/media/catalog/product/cache/2/thumbnail/600x/1b89f2fc96fc819c2a7e15c7e545e8a9/2/8/2875.12-job-opening-icon-iconbunny.jpg" style="width:100px; height:100px; border-radius:50px">
+            </td>
+            <td style="width: 100%;">
+            	<table style="width: 100%; margin-left:20px">
+            		<tr class="row">
+
+                  <td><label style="font-size:20px; font-weight:bold">{{row.2}}</label><td></tr>
+		<tr class="row">
+			<td><i><b>Description:</b></i></td>
+			<td><i><b>Skills:</b></i> {{row.4}}</td></tr>
+                    <tr><td>{{row.3}}</td>
+			<td style="width: 33%"><i><b>Experience:</b></i> {{row.8}}</td></tr>
+                    <tr class="row">
+
+
+
+
+                    	<td style="width: 33%"><i><b>Location:</b></i> {{row.6}}</td>
+                    	<td style="width: 33%"><i><b>Vacancies:</b></i> {{row.7}}</td>
+			<td style="width: 33%">
+			<a href="/applied_job_cancel/{{row.0}}"><button type="button" style="height:40px;width:90px;background-color:green;color:white">Cancel</button></a>
+
+                    </tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr>
+                  	<td style="width: 33%"><i><b>Scale:</b></i> {{row.11}}</td>
+			<td style="width: 33%"><i><b>Salary:</b></i> {{row.5}}</td>
+		    </tr>
+
+                    <tr class="row">
+
+                      <td><i><b>Contact Number:</b></i> {{row.10}}</td>
+                      <td style="width: 33%"><i><b>Time Limit:</b></i>{{row.9}} </td>
+
+                </table>
+            </td>
+       	</tr>
+    </table>
+  </div>
+  {% endfor %}
+
+
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  padding: 16px;
+  background-color: #f1f1f1;
+  margin: 20px 25px;
+}
+
+.row {
+    height: 25px;
+    vertical-align: bottom;
+}
+</style>
+</head>
+<body>
+
+  {% for row1 in posted_jobs %}
+  {% for row in row1 %}
+  <div class="card">
+
+    <table>
+    	<tr>
+        	<td>
+            	<img src="https://www.iconbunny.com/icons/media/catalog/product/cache/2/thumbnail/600x/1b89f2fc96fc819c2a7e15c7e545e8a9/2/8/2875.12-job-opening-icon-iconbunny.jpg" style="width:100px; height:100px; border-radius:50px">
+            </td>
+            <td style="width: 100%;">
+            	<table style="width: 100%; margin-left:20px">
+            		<tr class="row">
+
+                  <td><label style="font-size:20px; font-weight:bold">{{row.2}}</label><td></tr><tr></tr>
+                    <tr class="row">
+                    	<td><i><b>Description:</b></i></td>
+                    	<td style="width: 33%"><i><b>Vacancies:</b></i> {{row.7}}</td>
+
+                    </tr>
+
+
+
+                    <tr class="row">
+                    	<td>{{row.3}}</td>
+                    	<td style="width: 33%"><i><b>Experience:</b></i> {{row.8}}</td>
+
+                    </tr>
+
+		  <tr class="row"><td style="width: 33%"><i><b>Skills:</b></i> {{row.4}}</td>
+			<td><i><b>Scale:</b></i> {{row.11}}</td>
+
+			<td><a href="/recomendation_list/{{row.0}}"><button type="button"  style="height:40px;width:90px;background-color:green;color:white">APPLY</button></a></td></tr>
+		  <tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr>
+                  <tr class="row"><td style="width: 33%"><i><b>Location:</b></i> {{row.6}}</td>
+		   	<td style="width: 33%"><i><b>Time Limit:</b></i>{{row.9}} </td>
+
+		</tr>
+
+
+                    <tr class="row">
+                      <td style="width: 33%"><i><b>Salary:</b></i> {{row.5}}</td>
+                      <td><i><b>Contact Number:</b></i> {{row.10}}</td>
+
+                </table>
+            </td>
+       	</tr>
+    </table>
+  </div>
+  {% endfor %}
+{% endfor %}
+
+
+</body>
+</html>

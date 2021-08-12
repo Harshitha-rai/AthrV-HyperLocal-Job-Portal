@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+ <html>
+   <head>
+       <meta charset="UTF-8">
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <meta http-equiv="X-UA-Compatible" content="ie=edge">
+       <title>Registration</title>
+       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+       <style type="text/css">
+body {font-family: Arial, Helvetica, sans-serif;
+        background: linear-gradient(to top left,  #ffcc66 0%, #0099cc 100%) no-repeat center center fixed;
+}
+* {box-sizing: border-box}
+
+/* Full-width input fields */
+input[type=text], input[type=email], input[type=password] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+
+input[type=text]:focus, input[type=email]:focus, input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+}
+
+/* Set a style for all buttons */
+button {
+  background-color:#0099cc;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+    text-align: center;
+    border-radius: 10px;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+  transition:all 0.3s;
+}
+button:hover{
+   transform:scale(1.1);
+}
+
+button:hover {
+  opacity:1;
+}
+
+.signupbtn {
+    text-align: center;
+  width: 50%;
+
+}
+.flash_message{
+    position: relative;
+    top: -60px;
+}
+/* Add padding to container elements */
+.container {
+  padding: 12px;
+    top: 30px;
+    position: relative;
+        width: 45%;
+    height: 600px;
+    background-color:white;
+    border-radius: 20px;
+}
+
+/* Clear floats */
+.clearfix {
+    text-align: center;
+}
+    .heading{
+     width: 100%;
+        top: -10px;
+     text-align: center;
+     position: relative;
+        color: #000000;
+        font-family: "Icons16", sans-serif;
+    }
+.input_field{
+    border-radius: 10px;
+}
+ </style>
+   </head>
+   <body>
+  <div class="container">
+      <div class='heading'>
+    <h2><b>Creator Registration</b> </h2>
+</div>
+       <form action="/creator_registration" method="POST">
+           <label for="user_name"><b>Username</b></label>
+          <input type="text" id="user_name" name="user_name" class="input-box" placeholder="Enter Your Name" required/>
+          <label for="user_email"><b>Email</b></label>
+          <input type="email" id="user_email" name="user_email" class="input-box" placeholder="Enter Email" required/>
+          <label for="user_password"><b>Password</b></label>
+          <input type="password" id="user_password" name="user_password" class="input-box" minlength="6" maxlength="16" placeholder="Enter Password" required/>
+          <label for="u_confirm_password"><b>Repeat Password</b></label>
+          <input type="password" id="u_confirm_password" name="u_confirm_password" class="input-box" placeholder="Re-enter the password" required/>
+           <div class="clearfix">
+            <button type="submit" name=user_submit" class="signupbtn">Register</button>
+           </div>
+        <div class=flash_message>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-warning alert-dismissible">
+                          <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                <p class="flashtxt">{{ message }}</p>
+                                </div>
+                    {% endfor %}
+            {% endif %}
+        {% endwith %}
+        </div>
+       </form>
+     </div>
+   </body>
+ </html>

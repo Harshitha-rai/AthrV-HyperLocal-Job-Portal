@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Registration</title>
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+      <style type="text/css">
+      body
+      {
+      background: linear-gradient(to top left,  #ffcc66 0%, #0099cc 100%) no-repeat center center fixed;
+      }
+      .otp{
+ width:600px;
+ padding: 15px;
+ margin: 4% auto 0;
+ text-align:center;
+ border-radius:10px;
+ margin-bottom:20px;
+ background-color:white;
+}
+
+
+
+.otp h2{
+	 font-size:35px;
+	 color:black;
+	 margin-top: 20px;
+	 margin-left:-5px;
+}
+.input-box2
+ {
+	 font-size:15px;
+	 padding: 10px;
+	 border-radius: 10px;
+	 margin: 5%;
+	 width:80%;
+	 background-color: #f1f1f1;
+
+ }
+ .verify
+ {
+
+	 border-radius:10px;
+	 padding:10px;
+	 color:white;
+	 font-size:18px;
+	 margin:18px;
+	 margin-left:15px;
+	 background-color:#0099cc;
+ }
+ .send{
+	 border-color:blue;
+	 border-radius:10px;
+	 padding:8px;
+	 text-align:center;
+	 background-color:blue;
+	 font-size:18px;
+	 margin:25px;
+	 margin-left:30px;
+	 color:white;
+
+ }
+ </style>
+  </head>
+  <body>
+
+  <div class="otp">
+  <h2> OTP verification</h2>
+       <form action="/verify_otp2" method="POST">
+          {% if details %}
+              <input type="text" name="Address" class="input-box2" placeholder="Enter Your Address" value = "{{details[1]}}" readonly />
+              <br/>
+              <input type="integer" name="user_Mb_number" class="input-box2" placeholder="Enter Mobile Number" value ={{details[0]}} readonly />
+              <br/>
+          {% else %}
+              <input type="text" name="Address" class="input-box2" placeholder="Enter Your Address" required/>
+              <br/>
+              <input type="integer" name="user_Mb_number" class="input-box2" placeholder="Enter Mobile Number" required/>
+              <br/>
+          {% endif %}
+          <input type="Submit" name="user_send_otp" class="send" value="Send OTP" />
+          <br/>
+          <input type="integer" name="user_otp" class="input-box2" placeholder="Enter OTP" />
+		  <br/>
+          <input type="Submit" name="user_send_otp" class="verify" value="Verify"/>
+       <div class=flash_message>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-warning alert-dismissible">
+                          <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                <p class="flashtxt">{{ message }}</p>
+                                </div>
+                    {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+       </form>
+     </div>
+  </body>
+</html>

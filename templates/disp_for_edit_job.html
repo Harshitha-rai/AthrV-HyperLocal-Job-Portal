@@ -1,0 +1,94 @@
+{%extends "creator_dashboard.html" %}
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+    h4{
+    margin-left:50%;
+    margin-top:3px;
+    }
+         .card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  padding: 16px;
+  background-color: #f1f1f1;
+  margin: 20px 25px;
+}
+
+.row {
+    height: 25px;
+    vertical-align: bottom;
+}
+.edit_but{
+font-size:18px;
+ margin-left:80%;
+ color:white;
+ background-color:green;
+ border-radius:10px;
+ padding:5px;
+ width:115px;
+ margin-top:-5px;
+ }
+
+
+    </style>
+</head>
+<body>
+{% if disp_j_crea %}
+<form action="edit_create_job_second" method="post">
+
+
+      <h4> Jobs Created by You </h4>
+
+     {% for job in disp_j_crea %}
+
+      <div class="card">
+
+    <table>
+    	<tr>
+        	<td>
+            	<img src="https://www.iconbunny.com/icons/media/catalog/product/cache/2/thumbnail/600x/1b89f2fc96fc819c2a7e15c7e545e8a9/2/8/2875.12-job-opening-icon-iconbunny.jpg" style="width:100px; height:100px; border-radius:50px">
+            </td>
+            <td style="width: 100%;">
+            	<table style="width: 100%; margin-left:20px">
+            		<tr class="row">
+
+                  <td><label style="font-size:20px; font-weight:bold">{{job.2}}</label><td></tr>
+                    <tr class="row">
+                    	<td style="width: 33%"><i><b>Location:</b></i> {{job.6}}</td>
+                    	<td style="width: 33%"><i><b>Vacancies:</b></i> {{job.7}}</td>
+                        <td style="width: 33%"><i><b>Scale:</b></i> {{job.11}}</td>
+                    </tr>
+
+
+
+                    <tr class="row">
+                    	<td style="width: 33%"><i><b>Time Limit:</b></i>{{job.9}} </td>
+                    	<td style="width: 33%"><i><b>Experience:</b></i> {{job.8}}</td>
+                        <td style="width: 33%"><i><b>Salary:</b></i> {{job.5}}</td>
+                    </tr>
+                    <tr class="row"><td><i><b>Skills:</b></i> {{job.4}}</td>
+                    <tr class="row"><td><i><b>Description:</b></i></td>
+                    <tr><td>{{job.3}}</td></tr>
+
+                    <tr class="row">
+
+                      <td><i><b>Contact Number:</b></i> {{job.10}}</td>
+
+                </table>
+            </td>
+       	</tr>
+    </table>
+
+          <button type="submit" class="edit_but" name="edit_job" value="{{job[0]}}">Edit </button>
+
+
+
+  </div>
+      {% endfor %}
+
+{% endif %}
+</form>
+
+</body>
+{% endblock %}

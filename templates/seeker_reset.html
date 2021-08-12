@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Reset Password</title>
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<style>
+        body {font-family: Arial, Helvetica, sans-serif;
+        background:linear-gradient(to top left,  #ffcc66 0%, #0099cc 100%) no-repeat center center fixed;
+}
+* {box-sizing: border-box}
+input[type=text], input[type=password]{
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+
+input[type=text]:focus, input[type=password]:focus{
+  background-color: #ddd;
+  outline: none;
+}
+button:hover {
+  opacity:0.8;
+}
+.heading{
+     width: 100%;
+     text-align: center;
+     position: relative;
+    color: #000000;
+    font-family: "Icons16", sans-serif;
+}
+.signupbtn {
+    text-align: center;
+  width: 50%;
+    position: relative;
+    font-size: 17px;
+    top: -15px;
+
+}
+button {
+  background-color: #0099cc;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+    text-align: center;
+    border-radius: 10px;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+.container {
+  padding: 16px;
+    top: 60px;
+    position: relative;
+    width: 50%;
+    background-color: white;
+    border-radius: 20px;
+}
+ .clearfix {
+    text-align: center;
+}
+.input_field{
+    border-radius: 10px;
+}
+</style>
+<body>
+    <form action="/seeker_reset" method="POST">
+        <div class="container">
+       <div class='heading'>
+            <h2>Reset Password</h2>
+       </div>
+        <p><input class="input_field" type="text" name="token" placeholder="Enter Token here" required ></p>
+        <p><input class="input_field" type="password" name="password" placeholder="Enter New Password" required></p>
+        <p><input class="input_field" type="password" name="cpassword" placeholder="Conform Password" required></p>
+       <div class="clearfix">
+       <button type="submit" class="signupbtn">Update Password</button>
+        </div>
+       <div class=flash_message>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-warning alert-dismissible">
+                          <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                <p class="flashtxt">{{ message }}</p>
+                                </div>
+                    {% endfor %}
+            {% endif %}
+        {% endwith %}
+         </div>
+        </div>
+    </form>
+</body>
+</html>

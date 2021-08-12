@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login</title>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  </head>
+  <style>
+      body {font-family: Arial, Helvetica, sans-serif;
+        background:linear-gradient(to top left,  #ffcc66 0%, #0099cc 100%) no-repeat center center fixed;
+}
+* {box-sizing: border-box}
+input[type=email], input[type=text], input[type=password] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+
+input[type=email]:focus, input[type=text]:focus, input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+button:hover {
+  opacity:1;
+}
+.pass_link{
+    text-align: right;
+    font-size: 15px;
+    position: relative;
+    top: -25px;
+}
+.signup_link{
+    text-align: center;
+    font-size: 15px;
+}
+
+.signupbtn {
+    text-align: center;
+  width: 40%;
+    position: relative;
+    font-size: 17px;
+    top: -15px;
+
+}
+button {
+  background-color:#33cccc;
+  color: white;
+  padding: 13px 15px;
+  margin: 8px 0;
+  border: none;
+  text-align: center;
+  border-radius: 100px;
+  cursor: pointer;
+  opacity: 0.9;
+  transition:all 0.3s;
+}
+button:hover{
+   transform:scale(1.1);
+}
+
+      .container {
+  padding: 16px;
+    top: 60px;
+    position: relative;
+    width: 50%;
+    background-color: white;
+    border-radius: 20px;
+}
+      .clearfix {
+    text-align: center;
+}
+     .heading{
+     width: 100%;
+     text-align: center;
+     position: relative;
+     color: #000000;
+     font-family: "Icons16", sans-serif;
+    }
+#password{
+    border-radius: 10px;
+}
+.input_field{
+    border-radius: 10px;
+}
+.input_field i{
+    margin-left: -30px;
+    cursor: pointer;
+}
+#togglePassword{
+        left: 98%;
+    position: relative;
+    font-size: 18px;
+    top: -55px;
+}
+
+  </style>
+  <body>
+<form action="/seeker_login" method=POST>
+    <div class="container">
+      <div class='heading'>
+    <h2><b>Seeker Login</b> </h2>
+    </div>
+        <label for="email"><b>Email</b></label>
+    <input class="input_field" type="email" id="email" placeholder="Enter Email" name="email" required>
+    <div  class="input_field">
+        <label for="password"><b>Password</b></label>
+    <input type="password" id="password" placeholder="Enter Password" name="password" required>
+    <i class="far fa-eye" id="togglePassword"></i></div>
+<div class="pass_link">
+<a href="/seeker_forgot">Forgot password?</a></div>
+
+<div class="clearfix">
+      <button type="submit" class="signupbtn">Login</button>
+    </div>
+<div class="signup_link">
+Need an Account? <a href="/seeker_registration">Register now</a></div>
+    <div class=flash_message>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-warning alert-dismissible">
+                          <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                <p class="flashtxt">{{ message }}</p>
+                                </div>
+                    {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+    </div>
+</form>
+</div>
+</body>
+<script>
+    const togglePassword = document.querySelector('#togglePassword');
+const password = document.querySelector('#password');
+togglePassword.addEventListener('click', function (e) {
+    // toggle the type attribute
+    const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+    password.setAttribute('type', type);
+    // toggle the eye slash icon
+    this.classList.toggle('fa-eye-slash');
+});
+</script>
+</html>

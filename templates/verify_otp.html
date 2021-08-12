@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Registration</title>
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<style>
+    body {font-family: Arial, Helvetica, sans-serif;
+        background: linear-gradient(to top left,  #ffcc66 0%, #0099cc 100%) no-repeat center center fixed;
+}
+* {box-sizing: border-box}
+    .container {
+  padding: 12px;
+    top: 35px;
+    position: relative;
+    width: 50%;
+    background-color: white;
+    border-radius: 20px;
+}
+
+    .input_field{
+    border-radius: 10px;
+}
+    input[type=text] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+
+input[type=text]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+.submit-btn {
+  background-color: #0099cc;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+    text-align: center;
+  width: 50%;
+    border-radius: 10px;
+  cursor: pointer;
+  opacity: 0.9;
+}
+</style>
+<body>
+<form method="post" action="/verify_otp">
+    <div class="container">
+        <div class='heading'>
+    <h3><b>To complete your Registration, <br>Please verify your Mobile number</b> </h3>
+            <br>
+</div>
+    {% if details %}
+        <label for="address"><b>Address</b></label>
+    <input class="input_field" type="text" id="address" placeholder="Enter your address" name="address" value = "{{details[1]}}" readonly>
+
+    <label for="mobile_number"><b>Mobile Number</b></label>
+    <input class="input_field" type="text" id="mobile_number" placeholder="Enter Mobile number" name="mobile_number" value ={{details[0]}} readonly>
+
+        {% else %}
+    <label for="address1"><b>Address</b></label>
+    <input class="input_field" type="text" id="address1" placeholder="Enter your address" name="address" required>
+
+    <label for="mobile_number1"><b>Mobile Number</b></label>
+    <input class="input_field" type="text" id="mobile_number1" placeholder="Enter Mobile number" name="mobile_number" required>
+    {% endif %}
+    <input type="submit" name="user_verify" value="Send OTP"  class="submit-btn">
+    <br>
+        <label for="otp"><b>Enter the OTP</b></label>
+    <input class="input_field" type="text" id="otp" placeholder="Enter the OTP" name="otp">
+     <input type="submit" name="user_verify" value="Verify OTP"  class="submit-btn">
+    <br>
+    <div class=flash_message>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-warning alert-dismissible">
+                          <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                <p class="flashtxt">{{ message }}</p>
+                                </div>
+                    {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+    </div>
+    </form>
+</body>
+</html>

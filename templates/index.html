@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AthrV Hyper-Local Job portal</title>
+</head>
+<style>
+body {
+  background: linear-gradient(to top left,  #ffcc66 0%, #0099cc 100%) no-repeat center center fixed;
+  background-size: cover;
+  height: 100%;
+  overflow: hidden;
+}
+.button {
+  padding: 15px 25px;
+  font-size: 24px;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  color: #fff;
+  background-color:#d9994a;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+}
+.button:hover {background-color:#4d999e}
+
+.button:active {
+  background-color: #4d999e;
+  box-shadow: 0 3px #343333;
+  transform: translateY(2px);
+}
+#heading{
+    text-align: center;
+    position: relative;
+    top: 60px;
+}
+.column {
+  float: left;
+  width: 25%;
+  padding: 0 30px;
+}
+
+/* Remove extra left and right margins, due to padding */
+.row {margin: 0 -5px;}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  padding: 16px;
+  border-radius: 15px;
+  height: 200px;
+  text-align: center;
+  color: black;
+  background-color: transparent;
+}
+
+#centre{
+    position: relative;
+    left: 21%;
+    top: 140px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+</style>
+<body >
+<div id="heading">
+    <h3>Welcome to</h3>
+    <h1>AthrV Hyper-Local Job Portal</h1>
+</div>
+<div id="centre">
+    <div class="row">
+      <div class="column">
+        <div class="card">
+          <h2>Creator</h2>
+          <p>Create jobs and Employ people around you</p>
+          <div>
+            <a href="/creator_login"><h2></h2>
+            <button class="button">Create new Jobs</button></a>
+        </div>
+        </div>
+      </div>
+
+      <div class="column">
+        <div class="card">
+          <h2>Seeker</h2>
+          <p>Search for jobs around you</p>
+          <div>
+            <a href="/seeker_login"><h2></h2>
+            <button class="button">Seek for Jobs</button></a>
+        </div>
+        </div>
+      </div>
+    </div>
+
+</div>
+</body>
+</html>

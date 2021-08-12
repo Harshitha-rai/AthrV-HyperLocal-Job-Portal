@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+   <title>Add Skills</title>
+<style type="text/css">
+    body{
+        background-color:black;
+     }
+    .add_skill{
+        padding:5px;
+        width: 250px;
+        background-color: rgb(236, 207, 207);
+     }
+    h3{
+        text-align: center;
+        margin-right: 30px;
+        margin-top: 50px;
+        color:black;
+        font-size: 25px;
+        margin-bottom: 20px;
+
+     }
+    .add_skill3{
+        width:60px;
+        height:30px;
+        background-color:green;
+        margin-top:20 ;
+        border-radius: 10px;
+
+     }
+     .a_skill{
+        background:grey;
+        position: absolute;
+        left:50%;
+        top:30%;
+        transform: translate(-50%,-50%);
+        width:300px;
+        height:0px;
+        padding-bottom: 200px;
+        display: flex;
+
+
+      }
+
+    h4{
+        color: brown;
+    }
+
+
+</style>
+</head>
+<body>
+<div class="a_skill">
+<form  action="/add_skills" method="POST" align="center">
+    <fieldset class='add_skill1'>
+    <h3>Add new skill</h3>
+
+    <input type="text" class="add_skill"  name="add_skill" placeholder = "Enter your skills here" list="skills" size="5" />
+    <datalist id="skills"  >
+            <option value="Java">
+            <option value="Python">
+            <option value="SQL">
+            <option value="Mongodb">
+            <option value="Tkinter">
+            <option value="C programming">
+            <option value="C++ programming">
+            <option value="Flask">
+
+    </datalist>
+    </br> </br>
+    <input type = "Submit" class='add_skill3' value="Add">
+    </fieldset>
+</form>
+{% if error %}
+    <h4><strong>Error</strong>: {{error}}</h4>
+{% endif %}
+</div>
+</body>
+</html>

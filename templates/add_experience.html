@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Experience</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style type="text/css">
+    body{
+	background-color:black;}
+    .a_skill
+{
+ width:48%;
+ padding: 20px;
+ margin: 12% auto 0;
+ text-align:center;
+ background-color:lightgrey;
+ border-radius:10px;
+}
+.a_skill h3
+{
+font-size:35px;
+margin-top:5px;
+}
+
+.add_skill2
+{
+ padding: 10px;
+ width:70%;
+ text-align:justify;
+ margin-bottom:6%;
+ border-radius:5px;
+ font-size:15px;
+}
+.add_skill3
+{
+ padding: 10px;
+ color:white;
+ text-align:center;
+ border-radius:5px;
+ font-size:18px;
+ background-color:green;
+ margin-bottom:6%;
+}
+</style>
+</head>
+<body>
+<div class="a_skill">
+<form  action="/add_experience" method="POST">
+
+    <h3>Add Experience</h3>
+    <input type="text" name="add_Experience" class='add_skill2' placeholder = "Enter your Experience " size="30"/>
+    <input type = "Submit"  name='a_experience' class='add_skill3' value="Add "/>
+
+</form>
+{% with messages = get_flashed_messages() %}
+         {% if messages %}
+            <ul>
+               {% for message in messages %}
+               {{ message }}
+               {% endfor %}
+            </ul>
+         {% endif %}
+{% endwith %}
+{% if error %}
+    <h4><strong>Error</strong>: {{error}}</h4>
+{% endif %}
+
+</div>
+</body>
+</html>

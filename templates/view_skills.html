@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <title>Title</title>
+<style type="text/css">
+     body{
+        background-color:black;
+     }
+
+     .inputs{
+      color: rgb(192, 37, 37);
+      padding: 5px;
+      background-color: rgb(235, 223, 223);
+
+    }
+    .a_r_head{
+      color:black;
+    }
+    h2:hover{
+      color: rgb(4, 29, 15);
+    }
+    .a_sub{
+      background-color:rgb(216, 173, 173);
+      margin-top:4px;
+    }
+    .btn{
+      background-color: rgb(204, 197, 197);
+      height:23px;
+      width:30px;
+      text-emphasis: center;
+    }
+    .remove_skill{
+
+        background-color: grey;
+        text-align: center;
+        margin-top: 20px;
+        position: absolute;
+        display: inline-block;
+        left:50%;
+        top:50%;
+
+        transform: translate(-50%,-50%);
+
+
+    }
+</style>
+</head>
+<body>
+
+<div class="remove_skill">
+
+<form  action = "/remove_skills" method="POST" align="center">
+  <fieldset class="r_field">
+  <h2 class="a_r_head">Your skills</h2>
+  <ul id="r_skill_list">
+
+
+       {% for name in names %}
+
+          <input type='text' name="r_button" class="inputs" value="{{name[0]}}" readonly/>
+          <button type="submit" name="r_skill" class="btn" value="{{name[0]}}">-</button>
+          </br>
+       {% endfor %}
+      <button type="submit" name="r_skill" value="Add_skill" class="a_sub">Add new skill</button>
+
+  </ul>
+  </fieldset>
+  </form>
+</div>
+</body>
+</html>

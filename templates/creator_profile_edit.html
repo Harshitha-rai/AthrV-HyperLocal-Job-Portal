@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+      <title>Edit profile</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <style>
+  *{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins',sans-serif;
+  }
+  body{
+  display:flex;
+  height:100vh;
+  justify-content:center;
+  align-items:center;
+  padding:10px;
+  background:rgba(233, 225, 233, 0.774)
+  }
+  .container{
+  max-width:400px;
+  width:50%;
+  background:#fff;
+  padding:25px 30px;
+  border-radius:5px;
+  }
+  .container .title{
+  font-size:25px;
+  font-weight:500;
+  }
+  .container form .user-details{
+  justify-content:space-between;
+  margin:20px 0 12px 0;
+  }
+  form .user-details .input-box{
+  margin-bottom:15px;
+  width:97% 20px;
+  }
+  .user-details .input-box .details{
+  display:block;
+  font-weight:500;
+  margin-bottom:5px;
+  }
+  .user-details .input-box input{
+  height:45px;
+  width:100%;
+  outline:none;
+  border-radius:5px;
+  border:1px solid #ccc;
+  padding-left:15px;
+  font-size:16px;
+  border-bottom-width:2px;
+  transition:all 0.3s ease;
+  }
+  .user-details .input-box input:focus,
+  .user-details .input-box input:valid{
+    border-color:#9b59b6;
+  }
+  form .button{
+  height:30px;
+  transition:all 0.2s;
+  }
+  form .button input{
+  height:100%;
+  width: 50%;
+  outline:none;
+  color:#fff;
+  border:none;
+  font-size:16px;
+  font-weight:500;
+  border-radius:5px;
+  letter-spacing:1px;
+  background:#682773;
+  }
+  .button:hover{
+    transform:scale(1.1);
+  }
+  </style>
+  <body>
+<div class="container">
+    <form action="/profile" method="POST">
+    <div class="title"> Profile settings </div>
+        <div class="user-details">
+            <div class="input-box">
+                <span class="details">Name</span>
+                <input type="text" class="form-control" name="name" placeholder="Username" value="{{ current_user.username }}" required>
+            </div>
+            <div class="input-box">
+                <span class="details">Email ID</span>
+                <input type="text" class="form-control" value="{{ current_user.email }}" readonly>
+            </div>
+            <div class="input-box">
+                <span class="details">Mobile Number</span>
+                <input type="text" class="form-control" placeholder="enter phone number" value="{{ details[2] }}" readonly="">
+            </div>
+            <div class="input-box">
+                <span class="details">Address</span>
+                <input type="text" name="address" value="{{ details[1] }}" placeholder="Address" required>
+            </div>
+            <center>
+            <div class="button">
+            <input type="submit" value="SAVE">
+            </div>
+            </center>
+        </div>
+    </form>
+    </div>
+        </div>
+</body>
+</html>

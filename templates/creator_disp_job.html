@@ -1,0 +1,311 @@
+{% extends "creator_dashboard.html" %}
+{% block content %}
+    <title>Display jobs</title>
+<head>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+    <style>
+    h4{
+    margin-left:50%;
+    margin-top:3px;
+    }
+    .flash_message{
+    margin-left:50%;
+    margin-top:3px;
+    }
+    .card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  padding: 16px;
+  background-color: #f1f1f1;
+  margin: 20px 25px;
+}
+
+.row {
+    height: 25px;
+    vertical-align: bottom;
+}
+.apply_but{
+font-size:18px;
+ color:white;
+ background-color:green;
+ border-radius:10px;
+ padding:5px;
+ width:115px;
+ margin-top:-5px;
+ }
+ .delete_but{
+font-size:18px;
+ margin-left:60%;
+ margin-bottom:-5px;
+ color:white;
+ background-color:red;
+ border-radius:10px;
+ padding:5px;
+ width:125px;
+ }
+ .apply_but2{
+font-size:18px;
+ margin-left:80%;
+ color:white;
+ background-color:green;
+ border-radius:10px;
+ padding:5px;
+ width:115px;
+ display:inline-block;
+}
+ .search_tab{
+ padding:5px;
+ width:70%;
+ margin-left:20px;
+border-radius:10px;
+ font-size:15px;
+ border:2px solid black;}
+ .search_but
+ {
+ margin-right:15px;
+ margin-left:10px;
+ color:white;
+ padding:5px;
+ width:14%;
+ border-radius:10px;
+ background-color:blue;
+ font-size:18px;
+ border:2px solid black;}
+ .error_disp
+ {
+ margin-left:30%;
+ margin-top:25px;
+ color:red;}
+
+ .inline_buttons{
+ display: inline;}
+</style>
+</head>
+<body>
+<div class=flash_message>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-warning alert-dismissible">
+                          <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                <p class="flashtxt">{{ message }}</p>
+                                </div>
+                    {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+{% if pen_jb %}
+<form action="pending_application" method="post">
+
+
+      <h4> Pending jobs </h4>
+
+     {% for job in pen_jb %}
+
+      <div class="card">
+
+    <table>
+    	<tr>
+        	<td>
+            	<img src="https://www.iconbunny.com/icons/media/catalog/product/cache/2/thumbnail/600x/1b89f2fc96fc819c2a7e15c7e545e8a9/2/8/2875.12-job-opening-icon-iconbunny.jpg" style="width:100px; height:100px; border-radius:50px">
+            </td>
+            <td style="width: 100%;">
+            	<table style="width: 100%; margin-left:20px">
+            		<tr class="row">
+
+                  <td><label style="font-size:20px; font-weight:bold">{{job.2}}</label><td></tr>
+                    <tr class="row">
+                    	<td style="width: 33%"><i><b>Location:</b></i> {{job.6}}</td>
+                    	<td style="width: 33%"><i><b>Vacancies:</b></i> {{job.7}}</td>
+                        <td style="width: 33%"><i><b>Scale:</b></i> {{job.11}}</td>
+                    </tr>
+
+
+
+                    <tr class="row">
+                    	<td style="width: 33%"><i><b>Time Limit:</b></i>{{job.9}} </td>
+                    	<td style="width: 33%"><i><b>Experience:</b></i> {{job.8}}</td>
+                        <td style="width: 33%"><i><b>Salary:</b></i> {{job.5}}</td>
+                    </tr>
+                    <tr class="row"><td><i><b>Skills:</b></i> {{job.4}}</td>
+                    <tr class="row"><td><i><b>Description:</b></i></td>
+                    <tr><td>{{job.3}}</td></tr>
+
+                    <tr class="row">
+
+                      <td><i><b>Contact Number:</b></i> {{job.10}}</td>
+
+                </table>
+            </td>
+       	</tr>
+    </table>
+<div class="inline_buttons">
+          <button type="submit" onclick = "return confirm('Are you sure you want to delete this job?')" class="delete_but" name="Apply_job" value="{{job[0]}},22">Delete job </button>
+              <button type="submit" class="apply_but" name="Apply_job" value="{{job[0]}},33">View </button>
+</div>
+
+  </div>
+      {% endfor %}
+
+{% endif %}
+</form>
+
+{% if appr_jb %}
+<form action="approved_application" method="post">
+      <h4> Approved jobs </h4>
+     {% for job in appr_jb %}
+
+      <div class="card">
+
+    <table>
+    	<tr>
+        	<td>
+            	<img src="https://www.iconbunny.com/icons/media/catalog/product/cache/2/thumbnail/600x/1b89f2fc96fc819c2a7e15c7e545e8a9/2/8/2875.12-job-opening-icon-iconbunny.jpg" style="width:100px; height:100px; border-radius:50px">
+            </td>
+            <td style="width: 100%;">
+            	<table style="width: 100%; margin-left:20px">
+            		<tr class="row">
+
+                  <td><label style="font-size:20px; font-weight:bold">{{job.2}}</label><td></tr>
+                    <tr class="row">
+                    	<td style="width: 33%"><i><b>Location:</b></i> {{job.6}}</td>
+                    	<td style="width: 33%"><i><b>Vacancies:</b></i> {{job.7}}</td>
+                        <td style="width: 33%"><i><b>Scale:</b></i> {{job.11}}</td>
+                    </tr>
+
+
+
+                    <tr class="row">
+                    	<td style="width: 33%"><i><b>Time Limit:</b></i>{{job.9}} </td>
+                    	<td style="width: 33%"><i><b>Experience:</b></i> {{job.8}}</td>
+                        <td style="width: 33%"><i><b>Salary:</b></i> {{job.5}}</td>
+                    </tr>
+                    <tr class="row"><td><i><b>Skills:</b></i> {{job.4}}</td>
+                    <tr class="row"><td><i><b>Description:</b></i></td>
+                    <tr><td>{{job.3}}</td></tr>
+
+                    <tr class="row">
+
+                      <td><i><b>Contact Number:</b></i> {{job.10}}</td>
+
+                </table>
+            </td>
+       	</tr>
+    </table>
+          <div class="inline_buttons">
+               <button type="submit" onclick = "return confirm('Are you sure you want to delete this job?')"  class="delete_but" name="Apply_job" value="{{job[0]}},22">Delete job </button>
+
+              <button type="submit"   name="Apply_job" class="apply_but" value="{{job[0]}},33">View </button>
+
+</div>
+
+  </div>
+      {% endfor %}
+      {% endif %}
+    </form>
+
+{% if fina_jb %}
+<form action="finalized_application" method="post">
+<h4> Finalised jobs </h4>
+     {% for job in fina_jb %}
+
+      <div class="card">
+
+    <table>
+    	<tr>
+        	<td>
+            	<img src="https://www.iconbunny.com/icons/media/catalog/product/cache/2/thumbnail/600x/1b89f2fc96fc819c2a7e15c7e545e8a9/2/8/2875.12-job-opening-icon-iconbunny.jpg" style="width:100px; height:100px; border-radius:50px">
+            </td>
+            <td style="width: 100%;">
+            	<table style="width: 100%; margin-left:20px">
+            		<tr class="row">
+
+                  <td><label style="font-size:20px; font-weight:bold">{{job.2}}</label><td></tr>
+                    <tr class="row">
+                    	<td style="width: 33%"><i><b>Location:</b></i> {{job.6}}</td>
+                    	<td style="width: 33%"><i><b>Vacancies:</b></i> {{job.7}}</td>
+                        <td style="width: 33%"><i><b>Scale:</b></i> {{job.11}}</td>
+                    </tr>
+
+
+
+                    <tr class="row">
+                    	<td style="width: 33%"><i><b>Time Limit:</b></i>{{job.9}} </td>
+                    	<td style="width: 33%"><i><b>Experience:</b></i> {{job.8}}</td>
+                        <td style="width: 33%"><i><b>Salary:</b></i> {{job.5}}</td>
+                    </tr>
+                    <tr class="row"><td><i><b>Skills:</b></i> {{job.4}}</td>
+                    <tr class="row"><td><i><b>Description:</b></i></td>
+                    <tr><td>{{job.3}}</td></tr>
+
+                    <tr class="row">
+
+                      <td><i><b>Contact Number:</b></i> {{job.10}}</td>
+
+                </table>
+            </td>
+       	</tr>
+    </table>
+               <button type="submit" onclick = "return confirm('Are you sure you want to delete this job?')" class="delete_but" name="Apply_job" value="{{job[0]}},22">Delete job </button>
+
+              <button type="submit" class="apply_but" name="Apply_job" value="{{job[0]}},33">View </button>
+
+
+
+  </div>
+      {% endfor %}
+      {% endif %}
+</form>
+      {% if comp_jb %}
+<form action="completed_application" method="post">
+      <h4> Completed jobs </h4>
+     {% for job in comp_jb %}
+
+      <div class="card">
+
+    <table>
+    	<tr>
+        	<td>
+            	<img src="https://www.iconbunny.com/icons/media/catalog/product/cache/2/thumbnail/600x/1b89f2fc96fc819c2a7e15c7e545e8a9/2/8/2875.12-job-opening-icon-iconbunny.jpg" style="width:100px; height:100px; border-radius:50px">
+            </td>
+            <td style="width: 100%;">
+            	<table style="width: 100%; margin-left:20px">
+            		<tr class="row">
+
+                  <td><label style="font-size:20px; font-weight:bold">{{job.2}}</label><td></tr>
+                    <tr class="row">
+                    	<td style="width: 33%"><i><b>Location:</b></i> {{job.6}}</td>
+                    	<td style="width: 33%"><i><b>Vacancies:</b></i> {{job.7}}</td>
+                        <td style="width: 33%"><i><b>Scale:</b></i> {{job.11}}</td>
+                    </tr>
+
+
+
+                    <tr class="row">
+                    	<td style="width: 33%"><i><b>Time Limit:</b></i>{{job.9}} </td>
+                    	<td style="width: 33%"><i><b>Experience:</b></i> {{job.8}}</td>
+                        <td style="width: 33%"><i><b>Salary:</b></i> {{job.5}}</td>
+                    </tr>
+                    <tr class="row"><td><i><b>Skills:</b></i> {{job.4}}</td>
+                    <tr class="row"><td><i><b>Description:</b></i></td>
+                    <tr><td>{{job.3}}</td></tr>
+
+                    <tr class="row">
+
+                      <td><i><b>Contact Number:</b></i> {{job.10}}</td>
+
+                </table>
+            </td>
+       	</tr>
+    </table>
+          {% if job.12 %}
+            <button type="submit" class="apply_but2" name="rate_job" value={{job[0]}}>Rate this </button>
+          {% endif %}
+  </div>
+      {% endfor %}
+      {% endif %}
+      </form>
+</body>
+{% endblock %}

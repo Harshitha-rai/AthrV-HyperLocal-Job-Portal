@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Reset Password</title>
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+	<style type="text/css">
+	body
+	{
+	background:linear-gradient(to top left,  #ffcc66 0%, #0099cc 100%) no-repeat center center fixed;
+	}
+	.main{
+	width:450px;
+	margin:2% auto 0;
+	margin-bottom:8%;
+	margin-top:8%;
+
+	background-color:white;
+	text-align:center;
+	border-radius:10px;
+	}
+	.label_reset
+	{
+	font-size:25px;
+	color:black;
+	padding-top:12px;
+	}
+	#token,#password,#confirm_password
+	{
+	border-radius:10px;
+	width:85%;
+	padding:8px;
+	margin-top:6px;
+	background-color: #f1f1f1;
+	margin-bottom:6px;
+	font-size:15px;}
+	.pure-button
+	{
+	background-color:#0099cc;
+	border-radius:10px;
+	margin-top:10px;
+	margin-bottom:6px;
+	padding:6px;
+	font-size:15px;
+	color:white;
+	}
+	.main h4
+	{
+	color:red;
+	font-size:15px;
+	margin-bottom:10px;
+	}
+	.flashes{
+	color:red;
+	font-size:15px;
+	margin-bottom:10px;}
+	</style>
+</head>
+<body>
+<div class='main'>
+    <form class="pure-form" action="/creator_reset" method="POST">
+
+
+            <div class="label_reset">
+               Reset Password
+            </div>
+			</br>
+            <input type="text" placeholder="Enter token here" name="token"  id="token" required>
+			</br>
+            <input type="password" placeholder="Password" id="password" name="password" required>
+			</br>
+            <input type="password" placeholder="Confirm Password" id="confirm_password" name="cpassword" required>
+			</br>
+
+            <button type="submit" class="pure-button">Update Password</button>
+			<div class=flash_message>
+				{% with messages = get_flashed_messages() %}
+					{% if messages %}
+							{% for message in messages %}
+								<div class="alert alert-warning alert-dismissible">
+								  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+										<p class="flashtxt">{{ message }}</p>
+										</div>
+							{% endfor %}
+					{% endif %}
+				{% endwith %}
+				 </div>
+    </form>
+
+	</div>
+</body>
+
+
+</html>
